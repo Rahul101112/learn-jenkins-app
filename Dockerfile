@@ -1,10 +1,7 @@
 FROM node:20
 
+# Install netlify-cli globally as root during image build
+RUN npm install -g netlify-cli
 
-WORKDIR /Build
-COPY package*.json ./
-RUN npm install
-COPY . .
-EXPOSE 3000
-
-CMD [ "npm", "start" ]
+# Switch to node user (already exists in node:20)
+USER node

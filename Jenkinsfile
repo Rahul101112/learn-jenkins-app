@@ -11,7 +11,7 @@ pipeline {
         stage("Production Build") {
             agent {
                 docker {
-                    image 'node:20'
+                    image 'my-node-netlify:latest'
                     reuseNode true
                 }
             }
@@ -21,13 +21,10 @@ pipeline {
                                 echo "This is a SITE :$NETLIFY_SITE_ID"
                                 echo "Running inside Docker"
 
-                                export HOME=/tmp
-                                npm config set cache /tmp/.npm
-
-                                npm install netlify-cli
                                 npm --version
                                 node --version
-                                npx netlify --version
+                                netlify --version
+
                 '''
             }
         }
