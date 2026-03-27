@@ -8,6 +8,12 @@ pipeline {
 
     stages {
 
+        stage("Build Docker Image") {
+            steps {
+                sh 'docker build -t my-node-netlify:latest .'
+            }
+        }
+
         stage("Production Build") {
             agent {
                 docker {
