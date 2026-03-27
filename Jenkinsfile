@@ -47,7 +47,7 @@ pipeline {
                 echo "========Node.js inside this docker image========"
                 sh '''
                 echo "This is inside with docker image Node.js installed"
-                npm install -g netlify-cli
+                sudo npm install netlify-cli -g
                 netlify --version
 
                 '''
