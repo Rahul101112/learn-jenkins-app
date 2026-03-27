@@ -40,15 +40,15 @@ pipeline {
         
             agent {
             docker{
-                image 'openjdk:11-jdk'
+                image 'node:20'
                 reuseNode true
             }
             }
             steps{
-                echo "========Java inside this docker image========"
+                echo "========Node.js inside this docker image========"
                 sh '''
-                echo "This is inside with docker image Java installed"
-                java --version
+                echo "This is inside with docker image Node.js installed"
+                node --version
                 '''
             }
         
