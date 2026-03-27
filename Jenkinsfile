@@ -13,7 +13,6 @@ pipeline {
             agent {
             docker{
                 image 'node:20'
-                args '-u rahul'
                 reuseNode true
             }
             }
