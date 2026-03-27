@@ -11,7 +11,7 @@ pipeline {
                 docker --version
                 node --version
                 npm --version
-                sh 'docker ps'
+                docker ps
                 '''
             }
         
@@ -30,7 +30,7 @@ pipeline {
                 sh '''
                 echo "This is inside with docker image Java installed"
                 java --version
-                sh 'docker ps'
+                docker ps
                 '''
             }
         
