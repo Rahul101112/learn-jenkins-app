@@ -57,9 +57,6 @@ pipeline {
                     echo "Node: $(node --version)"
                     echo "NPM: $(npm --version)"
                     netlify --version
-
-                    echo "Deploying to Netlify..."
-                    netlfiy status
                 '''
             }
         }
