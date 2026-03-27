@@ -2,17 +2,25 @@ pipeline {
     agent any
 
     stages{
-        agent {
+        
+        stage("Web Application Testing"){
+            agent {
             docker{
                 image 'node:18-alpine'
                 reuseNode true
             }
             
-        }
-        stage("Web Application Testing"){
+        }            
             steps{
                 echo "========executing Web Application Testing========"
-                sh 'ip addr'
+                sh '''
+                node --version
+                npm --version
+                npm ci
+                npm build
+                la -lh               
+
+                '''
             }
         
         }
