@@ -17,13 +17,7 @@ pipeline {
         
         }
 
-        stage("With Docker Image"){
-            agent {
-            docker{
-                image 'openjdk:27-ea-oraclelinux10'
-                reuseNode true
-            }            
-        }         
+        stage("With Docker Image"){    
         
             agent {
             docker{
