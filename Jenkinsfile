@@ -16,8 +16,6 @@ pipeline {
                 sh '''
                 node --version
                 npm --version
-                la -lh
-
                 '''
             }
         
