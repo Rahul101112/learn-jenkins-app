@@ -16,8 +16,7 @@ pipeline {
                 sh '''
                 node --version
                 npm --version
-                npm ci
-                npm build
+                npm run build
                 la -lh   
                 ls -l /var/run/docker.sock
 
