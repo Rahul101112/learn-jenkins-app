@@ -21,6 +21,11 @@ pipeline {
             agent {
             docker{
                 image 'openjdk:27-ea-oraclelinux10'
+                reuseNode true
+            }
+
+            agent {
+            docker{
                 image 'python:3.11.15-trixie'
                 reuseNode true
             }
