@@ -22,11 +22,9 @@ pipeline {
                 sh '''
                             echo "This is a SITE :$NETLIFY_SITE_ID"
                    
-                            // npm install netlify-cli -g
-                            // netlify --version
-                            // netlify status
-                            // netlify deploy --dir=build
-                            // netlify status
+                            npm install netlify-cli -g
+                            netlify --version
+                            netlify status
 
 
                 '''
