@@ -16,24 +16,24 @@ pipeline {
         
         }
 
-        stage("Building Application"){    
+        // stage("Building Application"){    
         
-            agent {
-            docker{
-                image 'python:3.11.15-trixie'
-                reuseNode true
-            }
-            }
-            steps{
-                echo "========Python inside this docker image========"
-                sh '''
-                echo "This is inside with docker image Python installed"
-                python3 --version
-                python3 web2.py
-                '''
-            }
+        //     agent {
+        //     docker{
+        //         image 'python:3.11.15-trixie'
+        //         reuseNode true
+        //     }
+        //     }
+        //     steps{
+        //         echo "========Python inside this docker image========"
+        //         sh '''
+        //         echo "This is inside with docker image Python installed"
+        //         python3 --version
+        //         python3 web2.py
+        //         '''
+        //     }
         
-        }
+        // }
 
         stage("Production Build"){    
         
@@ -46,10 +46,8 @@ pipeline {
             steps{
                 echo "========Node.js inside this docker image========"
                 sh '''
+                npm install netlify-cli
                 echo "This is inside with docker image Node.js installed"
-                sudo npm install netlify-cli -g
-                netlify --version
-
                 '''
             }
         
@@ -63,7 +61,7 @@ pipeline {
         success('Archive Artifacts') 
         {
             sh 'echo "Archiving the artifacts"'
-            archiveArtifacts artifacts: 'web2.py', fingerprint: true
+            // archiveArtifacts artifacts: 'web2.py', fingerprint: true
             cleanWs()
             
         }
