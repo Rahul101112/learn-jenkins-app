@@ -14,7 +14,7 @@ pipeline {
             }
         }
 
-        stage("Install Dependencies") {
+        stage("Build App") {
             agent {
                 docker {
                     image 'my-node-netlify:latest'
@@ -25,21 +25,10 @@ pipeline {
                 sh '''
                     echo "Installing dependencies..."
                     npm install
-                '''
-            }
-        }
 
-        stage("Build App") {
-            agent {
-                docker {
-                    image 'my-node-netlify:latest'
-                    reuseNode true
-                }
-            }
-            steps {
-                sh '''
                     echo "Building the app..."
                     npm run build
+
                     echo "Build folder contents:"
                     ls -la build/
                 '''
