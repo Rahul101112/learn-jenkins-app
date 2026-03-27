@@ -30,7 +30,7 @@ pipeline {
                     rm -rf node_modules
 
                     echo "Installing dependencies..."
-                    npm ci
+                    npm install
 
                     echo "Checking react-scripts exists..."
                     ls node_modules/.bin/react-scripts
