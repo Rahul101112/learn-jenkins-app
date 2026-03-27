@@ -3,7 +3,7 @@ pipeline {
 
     stages{
         
-        stage("Without Docker Image"){          
+        stage("Pre-Build Steps"){          
             steps{
                 echo "========executing Web Application Testing without Docker image========"
                 sh '''
@@ -16,7 +16,7 @@ pipeline {
         
         }
 
-        stage("With Docker Image"){    
+        stage("Building Application"){    
         
             agent {
             docker{
@@ -35,7 +35,7 @@ pipeline {
         
         }
 
-        stage("With Java Image"){    
+        stage("Production Build"){    
         
             agent {
             docker{
