@@ -5,6 +5,7 @@ pipeline {
         stage("Web Application Testing"){
             steps{
                 echo "========executing Web Application Testing========"
+                sh 'ip addr'
             }
         
         }
