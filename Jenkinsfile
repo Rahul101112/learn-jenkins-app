@@ -23,6 +23,7 @@ pipeline {
                             echo "This is a SITE :$NETLIFY_SITE_ID"
                    
                             npm --version
+                            node --version
                 '''
             }
         }   
