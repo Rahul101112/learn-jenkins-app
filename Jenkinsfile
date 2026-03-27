@@ -2,6 +2,13 @@ pipeline {
     agent any
 
     stages{
+        agent {
+            docker{
+                image 'node:18-alpine'
+                reuseNode true
+            }
+            
+        }
         stage("Web Application Testing"){
             steps{
                 echo "========executing Web Application Testing========"
@@ -16,7 +23,7 @@ pipeline {
         success('Archive Artifacts') 
         {
             sh 'echo "Archiving the artifacts"'
-            cleanWs()
+            
         }
     }
 }
