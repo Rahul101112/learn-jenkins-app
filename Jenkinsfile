@@ -1,13 +1,10 @@
 pipeline {
     agent any
 
-<<<<<<< HEAD
     stages{
         stage("Web Application Testing"){
             steps{
                 echo "========executing Web Application Testing========"
-                sh 'npm install'
-                sh 'npm start'
             }
             post{
                 always{
@@ -22,7 +19,7 @@ pipeline {
             }
         }
     }
-<<<<<<< HEAD
+
     post{
         always{
             echo "========always========"
@@ -33,7 +30,6 @@ pipeline {
         }
         failure{
             echo "========pipeline execution failed========"
-=======
 
     post {
 
@@ -41,7 +37,6 @@ pipeline {
         {
             sh 'echo "Archiving the artifacts"'
             cleanWs()
->>>>>>> test
         }
     }
 }
