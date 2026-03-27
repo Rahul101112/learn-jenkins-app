@@ -11,7 +11,7 @@ pipeline{
 
         stage("Web Application Testing 1 "){
             steps{
-                echo "========executing Git  Application Version ========"
+                echo "========executing  Git  Application Version ========"
                 sh 'git --version'
                 
             }
