@@ -59,7 +59,7 @@ pipeline {
                     netlify --version
 
                     echo "Deploying to Netlify..."
-                    netlify deploy --prod --dir=build --auth=$NETLIFY_AUTH_TOKEN --site=$NETLIFY_SITE_ID
+                    netlfiy status
                 '''
             }
         }
