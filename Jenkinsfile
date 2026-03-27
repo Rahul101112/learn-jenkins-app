@@ -1,47 +1,43 @@
 pipeline {
     agent any
 
-    environment{
+    environment {
         NETLIFY_AUTH_TOKEN = credentials('netlify-token')
         NETLIFY_SITE_ID = credentials('netlify-site-id')
     }
 
-    stages{
-        
-            stage("Production Build"){    
-        
+    stages {
+
+        stage("Production Build") {
             agent {
-            docker{
-                image 'node:20'
-                reuseNode true
+                docker {
+                    image 'node:20'
+                    reuseNode true
+                }
             }
-            }
-            steps{
+            steps {
                 echo "========Node.js inside this docker image========"
                 sh '''
-                            echo "This is a SITE :$NETLIFY_SITE_ID"
-                            echo "Running inside Docker"
+                    echo "This is a SITE :$NETLIFY_SITE_ID"
+                    echo "Running inside Docker"
 
-                            export HOME=/tmp
-                            npm config set cache /tmp/.npm --global
+                    export HOME=/tmp
+                    npm config set cache /tmp/.npm
 
-                            npm install -g netlify-cli
-                            npm --version
-                            node --version
-                            netlify --version
+                    npm install -g netlify-cli
+                    npm --version
+                    node --version
+                    netlify --version
                 '''
             }
-        }   
+        }
     }
 
     post {
-
-        success('Archive Artifacts') 
-        {
-            sh 'echo "Archiving the artifacts"'
+        success {
+            echo "Archiving the artifacts"
             // archiveArtifacts artifacts: 'web2.py', fingerprint: true
             cleanWs()
-            
         }
     }
 }
