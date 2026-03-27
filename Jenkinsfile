@@ -20,7 +20,11 @@ pipeline {
                 echo "========Node.js inside this docker image========"
                 sh '''
                             echo "This is a SITE :$NETLIFY_SITE_ID"
-                            npm config set cache /tmp/.npm
+                            echo "Running inside Docker"
+
+                            export HOME=/tmp
+                            npm config set cache /tmp/.npm --global
+
                             npm install -g netlify-cli
                             npm --version
                             node --version
