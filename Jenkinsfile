@@ -36,6 +36,24 @@ pipeline {
         
         }
 
+        stage("With Java Image"){    
+        
+            agent {
+            docker{
+                image 'openjdk:11-jdk'
+                reuseNode true
+            }
+            }
+            steps{
+                echo "========Java inside this docker image========"
+                sh '''
+                echo "This is inside with docker image Java installed"
+                java --version
+                '''
+            }
+        
+        }
+
         
     }
 
