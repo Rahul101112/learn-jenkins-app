@@ -27,7 +27,7 @@ pipeline{
         }
         success{
             echo "========pipeline executed successfully ========"
-            archiveArtifacts artifacts: '**', fingerprint: true
+            // archiveArtifacts artifacts: '**', fingerprint: true
         }
         failure{
             echo "========pipeline execution failed========"
