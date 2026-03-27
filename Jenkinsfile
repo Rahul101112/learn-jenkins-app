@@ -28,8 +28,6 @@ pipeline {
                 echo "This is inside with docker image"
                 node --version
                 npm --version
-                cleanWs()
-                
                 '''
             }
         
