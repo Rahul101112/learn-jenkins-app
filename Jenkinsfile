@@ -9,6 +9,8 @@ pipeline {
                 sh '''
                 echo "This is outside docker image"
                 docker --version
+                node --version
+                npm --version
                 '''
             }
         
@@ -17,15 +19,16 @@ pipeline {
         stage("With Docker Image"){
             agent {
             docker{
-                image 'node:18-alpine'
+                image 'node:20-alpine'
                 reuseNode true
             }
             
         }            
             steps{
-                echo "========executing Web Application Testing========"
+                echo "========This is inside with docker image========"
                 sh '''
                 echo "This is inside with docker image"
+                docker --version
                 node --version
                 npm --version
                 '''
