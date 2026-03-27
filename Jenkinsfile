@@ -22,9 +22,7 @@ pipeline {
                 sh '''
                             echo "This is a SITE :$NETLIFY_SITE_ID"
                    
-                            npm install netlify-cli -g
-                            netlify --version
-                            netlify deploy --prod --dir=build --site=$NETLIFY_SITE_ID --auth=$NETLIFY_AUTH_TOKEN
+                            npm --version
                 '''
             }
         }   
