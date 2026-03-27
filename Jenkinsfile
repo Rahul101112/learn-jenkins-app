@@ -23,7 +23,7 @@ pipeline {
 
         success('Archive Artifacts') 
         {
-            sh 'ls -lh'
+            sh 'echo "Archiving the artifacts"'
             cleanWs()
         }
     }
