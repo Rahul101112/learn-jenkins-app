@@ -6,7 +6,16 @@ pipeline{
             steps{
                 echo "========executing Web Application Testing========"
                 sh 'npm --version'
+                sh 'ls -lh'
             }
+
+        stage("Web Application Testing 1 "){
+            steps{
+                echo "========executing Git  Application Version ========"
+                sh 'git --version'
+                
+            }
+
             post{
                 always{
                     echo "========always========"
@@ -26,7 +35,7 @@ pipeline{
         }
         success{
             echo "========pipeline executed successfully ========"
-            archiveArtifacts artifacts: 'reports/**', fingerprint: true
+            // archiveArtifacts artifacts: '**', fingerprint: true
         }
         failure{
             echo "========pipeline execution failed========"
