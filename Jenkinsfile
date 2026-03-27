@@ -47,8 +47,7 @@ pipeline {
                 echo "========Node.js inside this docker image========"
                 sh '''
                             echo "This is inside with docker image Node.js installed"
-                            npm config set cache /tmp/.npm
-                            npm install netlify-cli
+                            npm install netlify-cli --unsafe-perm
                             netlify --version
 
                 '''
