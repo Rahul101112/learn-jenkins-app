@@ -21,13 +21,10 @@ pipeline {
                     echo "This is a SITE :$NETLIFY_SITE_ID"
                     echo "Running inside Docker"
 
-                    export HOME=/tmp
-                    npm config set cache /tmp/.npm
-
-                    npm install -g netlify-cli
+                    npm install netlify-cli
                     npm --version
                     node --version
-                    netlify --version
+                    npx netlify --version
                 '''
             }
         }
