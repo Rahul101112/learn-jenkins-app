@@ -18,13 +18,16 @@ pipeline {
             steps {
                 echo "========Node.js inside this docker image========"
                 sh '''
-                    echo "This is a SITE :$NETLIFY_SITE_ID"
-                    echo "Running inside Docker"
+                                echo "This is a SITE :$NETLIFY_SITE_ID"
+                                echo "Running inside Docker"
 
-                    npm install netlify-cli
-                    npm --version
-                    node --version
-                    npx netlify --version
+                                export HOME=/tmp
+                                npm config set cache /tmp/.npm
+
+                                npm install netlify-cli
+                                npm --version
+                                node --version
+                                npx netlify --version
                 '''
             }
         }
