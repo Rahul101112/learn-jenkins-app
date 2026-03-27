@@ -11,7 +11,6 @@ pipeline {
                 docker --version
                 node --version
                 npm --version
-                sudo apt update -y
                 '''
             }
         
