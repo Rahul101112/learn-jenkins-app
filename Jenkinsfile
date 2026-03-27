@@ -23,8 +23,17 @@ pipeline {
             }
             steps {
                 sh '''
+                    echo "Node: $(node --version)"
+                    echo "NPM: $(npm --version)"
+
+                    echo "Cleaning old node_modules..."
+                    rm -rf node_modules
+
                     echo "Installing dependencies..."
                     npm install
+
+                    echo "Checking react-scripts exists..."
+                    ls node_modules/.bin/react-scripts
 
                     echo "Building the app..."
                     npm run build
@@ -45,10 +54,6 @@ pipeline {
             steps {
                 echo "========Deploying to Netlify========"
                 sh '''
-                    echo "Node: $(node --version)"
-                    echo "NPM: $(npm --version)"
-                    netlify --version
-
                     echo "Deploying to Netlify..."
                     netlify deploy --prod --dir=build --auth=$NETLIFY_AUTH_TOKEN --site=$NETLIFY_SITE_ID
                 '''
