@@ -8,8 +8,8 @@ pipeline {
                 echo "========executing Web Application Testing without Docker image========"
                 sh '''
                 echo "This is outside docker image"
-                mkdir -p Withdocker
-                docker --version
+                touch -p withdocker
+                docker --version >> withdocker
                 '''
             }
         
@@ -27,7 +27,7 @@ pipeline {
                 echo "========executing Web Application Testing========"
                 sh '''
                 echo "This is inside with docker image"
-                mkdir -p withdocker
+                touch -p withdocker
                 node --version >> withdocker
                 npm --version >> withdocker
                 
