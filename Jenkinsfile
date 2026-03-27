@@ -13,7 +13,6 @@ pipeline {
                 npm --version
                 docker ps
                 sudo apt update -y
-                sudo apt upgrade -y
                 '''
             }
         
