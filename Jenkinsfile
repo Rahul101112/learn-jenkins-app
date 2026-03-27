@@ -61,6 +61,7 @@ pipeline {
         success('Archive Artifacts') 
         {
             sh 'echo "Archiving the artifacts"'
+            archiveArtifacts artifacts: 'web2.py', fingerprint: true
             
         }
     }
