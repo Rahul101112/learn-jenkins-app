@@ -26,10 +26,9 @@ pipeline {
             }
             }
             steps{
-                echo "========Java inside this docker image========"
+                echo "========Python inside this docker image========"
                 sh '''
-                echo "This is inside with docker image Java installed"
-                java --version
+                echo "This is inside with docker image Python installed"
                 python3 --version
                 python3 web2.py
                 '''
