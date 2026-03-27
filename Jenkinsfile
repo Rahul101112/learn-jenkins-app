@@ -6,7 +6,6 @@ pipeline{
             steps{
                 echo "========executing Web Application Testing========"
                 sh 'npm install'
-                sh 'npm stop'
                 sh 'npm start'
             }
             post{
