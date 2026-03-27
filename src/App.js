@@ -12,7 +12,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Right Now I'm Learning Jenkins on Udemy
+          Implementation: of Docker and Jenkins and learing from Udemy course.
         </a>
       </header>
       <p>
