@@ -30,7 +30,6 @@ pipeline {
                                 npm --version
                                 node --version
                                 netlify --version
-                                netlify deploy --prod --dir=build
 
                 '''
             }

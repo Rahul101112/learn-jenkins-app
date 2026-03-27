@@ -1,7 +1,8 @@
-FROM node:20
+FROM node:18
 
 # Install netlify-cli globally
 RUN npm install -g netlify-cli
+
 
 # Create the Jenkins user (uid 110, gid 114) in /etc/passwd
 RUN groupadd -g 114 jenkins && \
