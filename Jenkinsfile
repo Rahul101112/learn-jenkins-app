@@ -30,7 +30,6 @@ pipeline {
                 sh '''
                 echo "This is inside with docker image Java installed"
                 java --version
-                docker ps
                 '''
             }
         
