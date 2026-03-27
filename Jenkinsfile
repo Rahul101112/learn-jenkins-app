@@ -1,44 +1,30 @@
-pipeline{
+pipeline {
     agent any
 
-    stages{
-        stage("Web Application Testing"){
-            steps{
-                echo "========executing Web Application Testing========"
-                sh 'npm --version'
-                sh 'ls -lh'
-            }
+    stages {
 
-        stage("Web Application Testing 1 "){
-            steps{
-                echo "========executing  Git  Application Version ========"
-                sh 'git --version'
-                
+        stage('Build_Python_project') 
+        {
+            steps {
+               sh 'echo "Testing completed for the python project"'
             }
+        }
 
-            post{
-                always{
-                    echo "========always========"
-                }
-                success{
-                    echo "========A executed successfully========"
-                }
-                failure{
-                    echo "========A execution failed========"
-                }
+        stage('Test_python') 
+        {
+            steps {
+                sh 'echo "Testing completed for the python project"'
+                sh 'ip addr'
             }
         }
     }
-    post{
-        always{
-            echo "========always========"
-        }
-        success{
-            echo "========pipeline executed successfully ========"
-            // archiveArtifacts artifacts: '**', fingerprint: true
-        }
-        failure{
-            echo "========pipeline execution failed========"
+
+    post {
+
+        success('Archive Artifacts') 
+        {
+            sh 'ls -lh'
+            cleanWs()
         }
     }
 }
