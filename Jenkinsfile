@@ -16,8 +16,7 @@ pipeline {
                 sh '''
                 node --version
                 npm --version
-                la -lh   
-                ls -l /var/run/docker.sock
+                la -lh
 
                 '''
             }
