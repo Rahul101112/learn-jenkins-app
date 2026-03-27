@@ -28,7 +28,6 @@ pipeline {
                 echo "========This is inside with docker image========"
                 sh '''
                 echo "This is inside with docker image"
-                docker --version
                 node --version
                 npm --version
                 '''
