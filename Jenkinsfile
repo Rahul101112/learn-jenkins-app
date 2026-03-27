@@ -40,6 +40,7 @@ pipeline {
             agent {
             docker{
                 image 'node:20'
+                args '-u root'
                 reuseNode true
             }
             }
@@ -47,7 +48,7 @@ pipeline {
                 echo "========Node.js inside this docker image========"
                 sh '''
                             echo "This is inside with docker image Node.js installed"
-                            npm install netlify-cli --unsafe-perm
+                            npm install netlify-cli -g
                             netlify --version
 
                 '''
