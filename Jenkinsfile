@@ -6,6 +6,7 @@ pipeline{
             steps{
                 echo "========executing Web Application Testing========"
                 sh 'npm --version'
+                sh 'ls -lh'
             }
             post{
                 always{
