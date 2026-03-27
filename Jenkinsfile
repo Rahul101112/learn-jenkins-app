@@ -21,6 +21,7 @@ pipeline {
             agent {
             docker{
                 image 'openjdk:27-ea-oraclelinux10'
+                image 'python:3.11.15-trixie'
                 reuseNode true
             }
             
@@ -30,6 +31,8 @@ pipeline {
                 sh '''
                 echo "This is inside with docker image Java installed"
                 java --version
+                python3 --version
+                python3 web2.py
                 '''
             }
         
