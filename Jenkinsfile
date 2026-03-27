@@ -8,7 +8,7 @@ pipeline {
                 echo "========executing Web Application Testing without Docker image========"
                 sh '''
                 echo "This is outside docker image"
-                touch -p withdocker
+                touch withdocker
                 docker --version >> withdocker
                 '''
             }
@@ -27,7 +27,7 @@ pipeline {
                 echo "========executing Web Application Testing========"
                 sh '''
                 echo "This is inside with docker image"
-                touch -p withdocker
+                touch withdocker
                 node --version >> withdocker
                 npm --version >> withdocker
                 
