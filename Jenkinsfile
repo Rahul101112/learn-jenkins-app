@@ -78,34 +78,3 @@ pipeline {
         }
     }
 }
-```
-
----
-
-## 📁 Your Repo Structure Should Look Like This
-```
-your-repo/
-├── Dockerfile          ← Docker image definition
-├── Jenkinsfile         ← Pipeline definition
-├── package.json        ← App dependencies
-├── package-lock.json   ← Exact dependency versions
-└── src/                ← Your app source code
-```
-
----
-
-## 🔄 Flow Summary
-```
-GitHub Push
-    ↓
-Jenkins reads Jenkinsfile
-    ↓
-Stage 1: docker build → creates my-node-netlify image
-    ↓
-Stage 2: npm ci → installs node_modules
-    ↓
-Stage 3: npm run build → creates build/ folder
-    ↓
-Stage 4: netlify deploy → uploads build/ to Netlify
-    ↓
-Post: cleanWs() → cleans up workspace
