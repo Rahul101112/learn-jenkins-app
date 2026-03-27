@@ -4,6 +4,7 @@ pipeline {
     environment {
         NETLIFY_AUTH_TOKEN = credentials('netlify-token')
         NETLIFY_SITE_ID = credentials('netlify-site-id')
+        CI_ENVIRONMENT_URL = "http://52.157.155.87:3000/"
     }
 
     stages {
