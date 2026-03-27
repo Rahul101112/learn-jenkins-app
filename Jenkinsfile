@@ -19,17 +19,16 @@ pipeline {
         stage("With Docker Image"){
             agent {
             docker{
-                image 'node:20-alpine'
+                image 'openjdk:27-ea-oraclelinux10'
                 reuseNode true
             }
             
         }            
             steps{
-                echo "========This is inside with docker image========"
+                echo "========Java inside this docker image========"
                 sh '''
-                echo "This is inside with docker image"
-                node --version
-                npm --version
+                echo "This is inside with docker image Java installed"
+                java --version
                 '''
             }
         
