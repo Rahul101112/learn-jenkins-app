@@ -12,7 +12,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Implementation: of Docker and Jenkins and learing from Udemy course.
+          Implementation: of Docker and Jenkins on the Ubuntu server completed and learning from Udemy course.
         </a>
       </header>
       <p>
