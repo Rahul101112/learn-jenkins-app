@@ -4,7 +4,8 @@ pipeline {
     environment {
         NETLIFY_AUTH_TOKEN = credentials('netlify-token')
         NETLIFY_SITE_ID = credentials('netlify-site-id')
-        CI_ENVIRONMENT_URL = "http://52.157.155.87:3000/"
+        VM_IP = '20.198.86.255'
+        VM_USER = 'gea_admin'
     }
 
     stages {
@@ -27,45 +28,45 @@ pipeline {
                     echo "Node: $(node --version)"
                     echo "NPM: $(npm --version)"
 
-                    echo "Cleaning old node_modules..."
                     rm -rf node_modules
+                    npm ci
 
-                    echo "Installing dependencies..."
-                    npm install
-
-                    echo "Checking react-scripts exists..."
-                    ls node_modules/.bin/react-scripts
-
-                    echo "Building the app..."
                     npm run build
-
-                    echo "Build folder contents:"
                     ls -la build/
                 '''
             }
         }
 
-        stage("Production Deploy") {
-            agent {
-                docker {
-                    image 'my-node-netlify:latest'
-                    reuseNode true
-                }
-            }
+        stage("Deploy to Ubuntu VM") {
             steps {
-                echo "========Deploying to Netlify========"
-                sh '''
-                    echo "Node: $(node --version)"
-                    echo "NPM: $(npm --version)"
-                    netlify --version
-                '''
+                sshagent(['ubuntu-vm-ssh']) {
+                    sh '''
+                        echo "Testing connection..."
+                        ssh -o StrictHostKeyChecking=no $VM_USER@$VM_IP \
+                            "echo Connected Successfully!"
+
+                        echo "Clearing old files..."
+                        ssh -o StrictHostKeyChecking=no $VM_USER@$VM_IP \
+                            "rm -rf /var/www/html/*"
+
+                        echo "Copying build files..."
+                        scp -o StrictHostKeyChecking=no -r build/* \
+                            $VM_USER@$VM_IP:/var/www/html/
+
+                        echo "Restarting Nginx..."
+                        ssh -o StrictHostKeyChecking=no $VM_USER@$VM_IP \
+                            "sudo systemctl restart nginx"
+
+                        echo "Deployed to http://$VM_IP"
+                    '''
+                }
             }
         }
     }
 
     post {
         success {
-            echo "✅ Deployment successful!"
+            echo "✅ Build and Deployment successful!"
             cleanWs()
         }
         failure {
