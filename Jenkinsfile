@@ -29,7 +29,7 @@ pipeline {
                     echo "NPM: $(npm --version)"
 
                     rm -rf node_modules
-                    npm ci
+                    npm install
 
                     npm run build
                     ls -la build/
