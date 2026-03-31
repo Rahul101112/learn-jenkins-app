@@ -42,7 +42,7 @@ pipeline {
                 '''
             }
         }
-
+ 
 stage("Azure Login") {
     steps {
         sh '''
