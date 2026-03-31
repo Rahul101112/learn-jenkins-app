@@ -88,6 +88,17 @@ stage("Azure Login") {
             }
         }
 
+stage("Approval Before Upload") {
+    steps {
+        script {
+            input message: "Approve deployment?",ok: "Yes, Upload", submitter: "admin,devops-team"
+        }
+    }
+}
+
+
+        
+
 stage("Upload to Azure Storage") {
     steps {
         sh '''
