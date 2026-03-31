@@ -12,7 +12,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Implementation of Docker and Jenkins on the Staoge Account.
+          Implementation of Docker and Jenkins on the Storage Account.
         </a>
       </header>
       <p>
