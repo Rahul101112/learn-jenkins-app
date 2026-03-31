@@ -6,6 +6,12 @@ pipeline {
         NETLIFY_SITE_ID = credentials('netlify-site-id')
         VM_IP = '20.198.86.255'
         VM_USER = 'gea_admin'
+        STORAGE_ACCOUNT = "devopslearning1801"
+        CONTAINER_NAME = "myapp-container"
+
+        AZURE_CLIENT_ID = credentials('azure-client-id')
+        AZURE_CLIENT_SECRET = credentials('azure-client-secret')
+        AZURE_TENANT_ID = credentials('azure-tenant-id')
     }
 
     stages {
@@ -37,6 +43,25 @@ pipeline {
             }
         }
 
+stage("Azure Login") {
+    steps {
+        sh '''
+            echo "Logging into Azure using Service Principal..."
+
+            az login --service-principal \
+                -u $AZURE_CLIENT_ID \
+                -p $AZURE_CLIENT_SECRET \
+                --tenant $AZURE_TENANT_ID
+        '''
+    }
+}
+
+
+
+
+
+        
+
         stage("Deploy to Ubuntu VM") {
             steps {
                 sshagent(['ubuntu-vm-ssh']) {
@@ -62,6 +87,31 @@ pipeline {
                 }
             }
         }
+
+stage("Upload to Azure Storage") {
+    steps {
+        sh '''
+            echo "Uploading build files using Service Principal..."
+
+            az storage blob upload-batch \
+                --account-name $STORAGE_ACCOUNT \
+                --destination $CONTAINER_NAME \
+                --source build/ \
+                --auth-mode login
+
+            echo "Upload completed!"
+        '''
+    }
+}
+
+
+
+
+
+
+
+
+        
     }
 
     post {
